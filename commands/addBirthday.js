@@ -3,7 +3,7 @@ const { User } = require('../database/models/User');
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('add')
+		.setName('addBirthday')
 		.setDescription('Adiciona a data de aniversário!')
 		.addStringOption(option =>
 			option.setName('data')
@@ -21,8 +21,7 @@ module.exports = {
 	async execute(interaction) {
 		const data = interaction.options.getString('data');
 		const usuario = interaction.options.getUser('usuario') ?? null;
-		const time_zone = interaction.options.getString('time_zone') ?? 'America/Campo_Grande';
-		const mensagem_especial = interaction.options.getString('mensagem_especial') ?? null;
+		const mensagemEspecial = interaction.options.getString('mensagem_especial') ?? null;
 		const guildId = interaction.guildId;
 
 		console.log('servidor id:', guildId)
@@ -33,8 +32,7 @@ module.exports = {
 					user_id: usuario.id,
 					day: data.split('/')[0],
 					month: data.split('/')[1],
-					time_zone: time_zone,
-					special_message: mensagem_especial,
+					special_message: mensagemEspecial,
 					channel_id: guildId,
 				});
 				console.log(user.toJSON());
@@ -55,7 +53,7 @@ module.exports = {
 					day: data.split('/')[0],
 					month: data.split('/')[1],
 					guild_id: interaction.guild.id,
-					time_zone: time_zone,
+					special_message: mensagemEspecial,
 					channel_id: guildId,
 				});
 				console.log(user.toJSON());

@@ -2,6 +2,8 @@
   "dependencies": {
     "discord.js": "^14.7.1",
     "dotenv": "^16.0.3",
+    "full-icu": "^1.5.0",
+    "luxon": "^3.3.0",
     "node-cron": "^3.0.2",
     "sequelize": "^6.29.0",
     "sqlite3": "^5.1.4"
@@ -14,7 +16,7 @@
     "eslint": "^8.35.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node --icu-data-dir=./node_modules/full-icu"
   },
   "keywords": [],
   "author": "",

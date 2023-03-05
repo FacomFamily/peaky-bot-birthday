@@ -20,9 +20,6 @@ const User = sequelize.define('users', {
 		type: DataTypes.STRING,
 		allowNull: false
 	},
-	time_zone: {
-		type: DataTypes.STRING,
-	},
 	special_message: {
 		type: DataTypes.STRING,
 	}

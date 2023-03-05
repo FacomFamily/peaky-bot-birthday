@@ -1,3 +1,4 @@
+const { DateTime } = require('luxon');
 const cron = require('node-cron');
 const { Channel } = require('../database/models/Channel');
 const { User } = require('../database/models/User');
@@ -6,8 +7,8 @@ const birthdayMessageSchedule = async (client) => {
 	await cron.schedule('*/10 * * * * *', async () => {
 		console.log('Start search of birthdays of users')
 		const now = new Date();
-		const day = `${now.getDate()}`.padStart(2, '0');
-		const month = `${now.getMonth() + 1}`.padStart(2, '0');
+		const day = DateTime.fromObject(now).setZone('America/Sao_Paulo').toFormat('dd');
+		const month = DateTime.fromObject(now).setZone('America/Sao_Paulo').toFormat('MM');
 
 		const channels = await Channel.findAll({
 			include: [{

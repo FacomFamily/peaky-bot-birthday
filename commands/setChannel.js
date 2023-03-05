@@ -12,6 +12,7 @@ module.exports = {
 
 	async execute(interaction) {
 		const channel = interaction.options.getChannel('canal');
+		const timeZone = interaction.options.getString('time_zone') ?? 'America/Sao_Paulo';
 		const guild = interaction.guild;
 
 		Channel.findOne({ where: { guild_id: guild.id } })
@@ -22,11 +23,11 @@ module.exports = {
 				} else {
 					Channel.create({
 						guild_id: guild.id,
-						channel_id: channel.id
+						channel_id: channel.id,
+						time_zone: timeZone,
 					});
 					await interaction.reply({ embeds: [sucessSet] });
 				}
 			})
-
 	},
 };
